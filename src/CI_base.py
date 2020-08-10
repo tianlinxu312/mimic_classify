@@ -111,8 +111,8 @@ class CI_base(object):
             gbm = model
             pred = gbm.predict_proba(torch.from_numpy(Xtest[:,self.dx::]).float())
             pred_exact = np.argmax(pred,axis =1)
-            acc2 = accuracy_score(Ytest, pred_exact)
-            AUC2 = roc_auc_score(Ytest,pred[:,1])
+            acc2 = sklearn.metrics.accuracy_score(Ytest, pred_exact)
+            AUC2 = sklearn.metrics.roc_auc_score(Ytest,pred[:,1])
             print 'Using Deep Model: ',
             print gbm
             del gbm
@@ -129,8 +129,8 @@ class CI_base(object):
             gbm = model.fit(Xtrain[:,self.dx::],Ytrain)
             pred = gbm.predict_proba(Xtest[:,self.dx::])
             pred_exact = np.argmax(pred,axis =1)
-            acc2 = accuracy_score(Ytest, pred_exact)
-            AUC2 = roc_auc_score(Ytest,pred[:,1])
+            acc2 = sklearn.metrics.accuracy_score(Ytest, pred_exact)
+            AUC2 = sklearn.metrics.roc_auc_score(Ytest,pred[:,1])
             print 'Using XGB model: '
             print gbm
             del gbm
